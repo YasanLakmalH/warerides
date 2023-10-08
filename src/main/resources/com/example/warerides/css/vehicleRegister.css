@@ -1,0 +1,21 @@
+.textfield{
+   -fx-background-radius:20px;
+   -fx-background-color:white;
+}
+.label{
+    -fx-text-fill:white;
+}
+.form{
+    -fx-background-color:black;
+    -fx-border-radius:20px;
+    -fx-background-radius:20px;
+}
+.button{
+    -fx-pref-width:100px;
+    -fx-pref-height:30px;
+    -fx-background-color:#CCC8AA;
+}
+.button:hover{
+    -fx-background-color:black;
+    -fx-text-fill:white;
+}

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: white; -fx-background-radius: 15px;" styleClass="linear-grad" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.warerides.controllers.LoginController">
+   <children>
+      <StackPane alignment="CENTER_LEFT" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <BorderPane prefHeight="400.0" prefWidth="300.0" style="-fx-background-radius: 15px; -fx-border-radius: 15px;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <AnchorPane prefHeight="580.0" prefWidth="393.0" style="-fx-background-radius: 15px; -fx-background-color: black;" BorderPane.alignment="CENTER">
+               <children>
+                  <Label layoutX="46.0" layoutY="57.0" prefHeight="86.0" prefWidth="308.0" text="WareRides" textAlignment="CENTER" textFill="#cacd30">
+                     <font>
+                        <Font name="Vivaldi Italic" size="64.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="261.0" fitWidth="400.0" layoutX="3.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/login.png" />
+                     </image></ImageView>
+               </children>
+            </AnchorPane>
+         </left>
+         <right>
+            <AnchorPane prefHeight="580.0" prefWidth="378.0" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox alignment="CENTER" layoutY="84.0" prefHeight="361.0" prefWidth="378.0" spacing="15.0">
+                     <children>
+                        <Label text="LOGIN" textFill="#cfba4e">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="userNameText" alignment="CENTER" prefHeight="35.0" prefWidth="245.0" promptText="User Name" styleClass="textfield" stylesheets="@css/style.css" />
+                        <PasswordField fx:id="passwordText" alignment="CENTER" prefHeight="35.0" prefWidth="245.0" promptText="Password" styleClass="textfield" stylesheets="@css/style.css" />
+                        <Button fx:id="signInButton" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" styleClass="signIn" stylesheets="@css/style.css" text="Sign in" textAlignment="CENTER" />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+                  <Button id="exitButton" fx:id="closeButton" layoutX="351.0" layoutY="1.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="24.0" styleClass="exitButton" stylesheets="@css/style.css" text="X" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </right>
+      </BorderPane>
+   </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</AnchorPane>

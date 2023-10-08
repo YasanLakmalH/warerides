@@ -1,0 +1,12 @@
+.dashboardButtonSection{
+    -fx-border-width:2px;
+    -fx-border-radius:20px;
+}
+.dashboardButtons{
+    -fx-max-width:200px;
+    -fx-text-fill:black;
+
+}
+.dashboardButtons:hover{
+    -fx-text-fill:red;
+}

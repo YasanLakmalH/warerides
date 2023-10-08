@@ -1,0 +1,31 @@
+
+.signIn{
+    -fx-background-color:#F1EFEF;
+}
+.signIn:hover{
+    -fx-background-color:#CCC8AA;
+}
+.exitButton{
+    -fx-background-color:white;
+    -fx-background-radius:100%;
+    -fx-border-radius:100%;
+    -fx-border-color:grey;
+}
+.exitButton:hover{
+    -fx-background-color: #FF6969;
+    -fx-border-color:#FF6969;
+}
+
+.previousButton{
+    -fx-background-color:grey;
+    -fx-background-radius:15px;
+}
+.previousButton:hover{
+    -fx-background-color: #6F4CBB;
+}
+.textfield{
+    -fx-border-radius:20px;
+    -fx-text-fill:#FFD95A;
+    -fx-background-color:white;
+    -fx-border-color:grey;
+}

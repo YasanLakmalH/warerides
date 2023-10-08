@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:id="formContainer" prefHeight="200.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.warerides.controllers.vehicleOwnerRegisterFormController">
+   <children>
+      <VBox alignment="CENTER" layoutX="25.0" layoutY="35.0" prefHeight="200.0" prefWidth="450.0" spacing="10.0" styleClass="form" stylesheets="@css/vehicleRegister.css">
+        <children>
+            <Label text="Vehicle Owner Details" textAlignment="CENTER">
+                <font>
+                    <Font name="Century Gothic" size="15.0" />
+                </font>
+                <padding>
+                    <Insets bottom="10.0" />
+                </padding>
+            </Label>
+              <VBox spacing="5.0">
+                  <children>
+                      <Label stylesheets="@css/vehicleRegister.css" text="Name">
+                          <font>
+                              <Font name="Century Gothic" size="15.0" />
+                          </font>
+                      </Label>
+                      <TextField fx:id="vehicleOwnerNameText" style="-fx-pref-width: 300px;" styleClass="textfield" stylesheets="@css/vehicleRegister.css" />
+                  <VBox spacing="5.0">
+                      <children>
+                          <Label stylesheets="@css/vehicleRegister.css" text="Address">
+                              <font>
+                                  <Font name="Century Gothic" size="15.0" />
+                              </font>
+                          </Label>
+                          <TextField fx:id="vehicleOwnerAddressText" styleClass="textfield" stylesheets="@css/vehicleRegister.css" />
+                      </children>
+                  </VBox>
+                  </children>
+              </VBox>
+            <HBox prefHeight="63.0" prefWidth="336.0" spacing="15.0">
+                <children>
+                    <VBox spacing="5.0">
+                        <children>
+                            <Label stylesheets="@css/vehicleRegister.css" text="Date Of Birth">
+                                <font>
+                                    <Font name="Century Gothic" size="15.0" />
+                                </font>
+                            </Label>
+                            <TextField fx:id="vehicleOwnerDOBText" styleClass="textfield" stylesheets="@css/vehicleRegister.css" />
+                        </children>
+                    </VBox>
+                    <VBox spacing="5.0">
+                        <children>
+                            <Label stylesheets="@css/vehicleRegister.css" text="NIC">
+                                <font>
+                                    <Font name="Century Gothic" size="15.0" />
+                                </font>
+                            </Label>
+                            <TextField fx:id="vehicleOwnerNICText" style="-fx-pref-width: 100px;" styleClass="textfield" stylesheets="@css/vehicleRegister.css" />
+                        </children>
+                    </VBox>
+                </children>
+            </HBox>
+        </children>
+        <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+        </padding>
+      </VBox>
+      <Button fx:id="submitButton" layoutX="486.0" layoutY="131.0" mnemonicParsing="false" stylesheets="@css/vehicleRegister.css" text="Next" />
+   </children>
+</AnchorPane>

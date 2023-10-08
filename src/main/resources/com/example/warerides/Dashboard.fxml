@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1200.0" style="-fx-background-radius: 20px;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.warerides.controllers.DashboardController">
+   <children>
+      <BorderPane minHeight="580.0" minWidth="1180.0" prefHeight="580.0" prefWidth="1180.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <AnchorPane prefHeight="580.0" prefWidth="250.0" styleClass="dashboardButtonSection" stylesheets="@css/dashboard.css">
+               <children>
+                  <VBox prefHeight="580.0" prefWidth="220.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <VBox alignment="TOP_CENTER" prefHeight="96.0" prefWidth="230.0">
+                           <children>
+                              <Label alignment="CENTER" text="WareRides" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Vivaldi Italic" size="30.0" />
+                                 </font>
+                              </Label>
+                              <HBox alignment="TOP_CENTER">
+                                 <children>
+                                    <Label text="BRANCH ID">
+                                       <font>
+                                          <Font name="Century Gothic" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text=":">
+                                       <font>
+                                          <Font name="Century Gothic" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="branchIdLabel" text="#">
+                                       <font>
+                                          <Font name="Century Gothic" size="15.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <HBox prefHeight="50.0" style="-fx-background-radius: 30px; -fx-background-color: black;">
+                           <children>
+                              <ImageView fx:id="profileImage" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" translateX="3.0" translateY="3.0">
+                                 <image>
+                                    <Image url="@Images/svgs/profile.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </ImageView>
+                              <VBox alignment="CENTER" spacing="2.0">
+                                 <children>
+                                    <Label fx:id="userNameLabel" prefHeight="19.0" prefWidth="140.0" text="User Name" textFill="WHITE">
+                                       <font>
+                                          <Font name="Century Gothic" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="userIdLabel" prefHeight="16.0" prefWidth="140.0" text="#1" textFill="WHITE">
+                                       <font>
+                                          <Font name="Century Gothic" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </VBox>
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </HBox>
+                        <Separator prefWidth="200.0">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </Separator>
+                        <VBox alignment="TOP_CENTER" prefHeight="37.0" prefWidth="220.0">
+                           <children>
+                              <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                 <children>
+                                    <ImageView fitHeight="21.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@Images/svgs/home.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label fx:id="homeButton" styleClass="dashboardButtons" stylesheets="@css/dashboard.css" text="HOME">
+                                       <font>
+                                          <Font name="Century Gothic" size="15.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                 <children>
+                                    <ImageView fitHeight="21.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@Images/svgs/newInquiry.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label fx:id="newInquiryButton" styleClass="dashboardButtons" stylesheets="@css/dashboard.css" text="NEW INQUIRY">
+                                       <font>
+                                          <Font name="Century Gothic" size="15.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <Separator prefWidth="200.0">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </Separator>
+                        <VBox alignment="TOP_CENTER" prefHeight="23.0" prefWidth="220.0">
+                           <children>
+                              <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                 <children>
+                                    <ImageView fitHeight="21.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@Images/svgs/search.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label fx:id="searchButton" styleClass="dashboardButtons" stylesheets="@css/dashboard.css" text="SEARCH">
+                                       <font>
+                                          <Font name="Century Gothic" size="15.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                 <children>
+                                    <ImageView fitHeight="21.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@Images/svgs/vehicleRegister.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label fx:id="vehicleRegisterButton" styleClass="dashboardButtons" stylesheets="@css/dashboard.css" text="VEHICLE REGISTER">
+                                       <font>
+                                          <Font name="Century Gothic" size="15.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <Separator prefWidth="200.0">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </Separator>
+                     </children>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </AnchorPane>
+         </left>
+         <right>
+            <VBox alignment="CENTER" BorderPane.alignment="CENTER">
+               <children>
+                  <AnchorPane fx:id="menuViewer" minHeight="580.0" minWidth="930.0" prefHeight="580.0" prefWidth="930.0" />
+               </children>
+            </VBox>
+         </right>
+      </BorderPane>
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</AnchorPane>
