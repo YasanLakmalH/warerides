@@ -36,7 +36,6 @@
                                     </AnchorPane>
                                  </children>
                               </HBox>
-                              <Button mnemonicParsing="false" stylesheets="@css/newInquiry.css" text="Search" />
                            </children>
                         </HBox>
                         <HBox spacing="20.0">
@@ -69,6 +68,7 @@
                                     </AnchorPane>
                                  </children>
                               </HBox>
+                              <Button fx:id="searchButton" mnemonicParsing="false" stylesheets="@css/newInquiry.css" text="Search" />
                            </children>
                         </HBox>
                      </children>
@@ -80,9 +80,9 @@
             </AnchorPane>
          </top>
          <center>
-            <ScrollPane hbarPolicy="NEVER" maxHeight="200.0" maxWidth="850.0" minHeight="200.0" prefHeight="200.0" prefWidth="850.0" BorderPane.alignment="TOP_LEFT">
+            <ScrollPane maxHeight="200.0" maxWidth="850.0" minHeight="200.0" prefHeight="200.0" prefWidth="850.0" style="-fx-background-color: transparent; -fx-border-width: 0;" vbarPolicy="NEVER" BorderPane.alignment="TOP_LEFT">
               <content>
-                  <HBox fx:id="vehicleContainer" maxHeight="200.0" maxWidth="960.0" prefHeight="200.0" prefWidth="960.0" />
+                  <HBox fx:id="vehicleContainer" maxHeight="200.0" maxWidth="960.0" prefHeight="200.0" prefWidth="960.0" spacing="10.0" />
               </content>
                <BorderPane.margin>
                   <Insets />

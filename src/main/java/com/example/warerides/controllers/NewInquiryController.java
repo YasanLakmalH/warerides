@@ -27,11 +27,12 @@ public class NewInquiryController implements Initializable {
         List<Vehicle> vehicleList = new ArrayList<>();
 
         vehicleTypeChoiceBox.getItems().addAll("CAR","SUV","CROSSOVER","VAN","MINIVAN");
+
         vehicleTypeChoiceBox.valueProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String oldValue, String newValue) {
+                vehicleList.clear();
                 DBUtils.getNoneServingVehicles(newValue).forEach(vehicle -> {
-                    System.out.println(vehicle.getVehicleId());
                     vehicleList.add(vehicle);
                     addVehicles(vehicleList);
                 });
@@ -39,12 +40,12 @@ public class NewInquiryController implements Initializable {
         });
     }
     public void addVehicles(List<Vehicle> vehicleList){
+
         if(!vehicleList.isEmpty()){
+            vehicleContainer.getChildren().clear();
             vehicleList.forEach(vehicle -> {
                 try {
-                    System.out.println(vehicle.getVehicleModel());
                     Node node = setVehicleData(vehicle.getVehicleImagePath(),vehicle.getVehicleModel());
-                    vehicleContainer.getChildren().clear();
                     vehicleContainer.getChildren().add(node);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
