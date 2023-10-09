@@ -1,0 +1,13 @@
+.header{
+    -fx-background-color:#000000;
+    -fx-background-radius:20px;
+}
+.button{
+    -fx-pref-width:100px;
+    -fx-pref-height:30px;
+    -fx-background-color:#CCC8AA;
+}
+.button:hover{
+    -fx-background-color:black;
+    -fx-text-fill:white;
+}

@@ -51,8 +51,6 @@ public class vehicleRegisterFormController implements Initializable{
                             vehicleImagePathText.getText().isEmpty() &&
                             vehicleOwnerIdText.getText().isEmpty()
                     ) {
-
-
                         DBUtils.registerVehicle(vehicleNoText.getText(),
                                 vehicleTypeText.getText(),
                                 vehicleModelText.getText(),

@@ -1,0 +1,14 @@
+
+`	java:S1129"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
+`	java:S112G"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
+G
+java:S1602%",Remove useless curly braces around statement(Şáóªøÿÿÿÿ
+G
+java:S1602(",Remove useless curly braces around statement(ëÈ³§úÿÿÿÿ
+B
+java:S1602+",Remove useless curly braces around statement(‘Î
+V	java:S125X"<This block of commented-out lines of code should be removed.(ğ •úÿÿÿÿ
+P
+java:S1128":Remove this unused import 'com.example.warerides.DBUtils'.(ËÛ±
+H
+java:S1128"2Remove this unused import 'java.sql.SQLException'.(ÛïÆŸ

@@ -1,6 +1,7 @@
 package com.example.warerides;
 
 import com.example.warerides.controllers.DashboardController;
+import com.example.warerides.controllers.VehicleItemController;
 import com.example.warerides.models.Vehicle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -89,6 +90,7 @@ public class DBUtils {
         psCheckUserExist.close();
         connection.close();
     }
+
     public static int getRegisteredVehicleCount() throws SQLException{
         Connection connection = DBConnection();
         int vehicleCount = 0;
@@ -202,7 +204,113 @@ public class DBUtils {
         connection.close();
         return vehicleOwnerId;
     }
+    public static List<Vehicle> getNoneServingVehicles(String vehicleType){
+        List<Vehicle> vehicleList = new ArrayList<>();
+        Connection connection = null;
+        PreparedStatement psGetVehicles = null;
+        ResultSet resultSet = null;
+        try{
+            connection = DBConnection();
+            psGetVehicles = connection.prepareStatement("SELECT * FROM vehicles WHERE vehicleType=? AND servingStatus=0");
+            psGetVehicles.setString(1,vehicleType);
+            resultSet = psGetVehicles.executeQuery();
+            while(resultSet.next()){
+               createVehicleList(vehicleList,resultSet);
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }finally{
+            if(resultSet != null){
+                try{
+                    connection.close();
+                }catch(SQLException e){
+                    e.printStackTrace();
+                }
+            }
+            if(psGetVehicles != null){
+                try{
+                    psGetVehicles.close();
+                }catch(SQLException e){
+                    e.printStackTrace();
+                }
+            }
+            if(connection != null){
+                try{
+                    connection.close();
+                }catch(SQLException e){
+                    e.printStackTrace();
+                }
+            }
+
+        }
+        return vehicleList;
+    }
+    public static List<Vehicle> checkServingVehicleAvailability(String pickupDate, String returnDate){
+        Connection connection = null;
+        PreparedStatement psGetVehicles = null;
+        ResultSet resultSet = null;
+        List<Vehicle> vehicleList = new ArrayList<>();
+        try{
+            connection = DBConnection();
+            psGetVehicles = connection.prepareStatement(
+                    "SELECT * FROM vehicles"+
+                    "INNER JOIN inquiries"+
+                    "ON vehicles.vehicleNo = inquiries.vehicleNo"+
+                    "WHERE inquiries.pickupDate > ? OR inquiries.returnDate < ?;");
+            psGetVehicles.setString(1,returnDate);
+            psGetVehicles.setString(2,pickupDate);
+            resultSet = psGetVehicles.executeQuery();
+            if(resultSet.next()){
+                while(resultSet.next()){
+                    createVehicleList(vehicleList,resultSet);
+                }
+            }else{
+                System.out.println("Vehicles Not Available");
+            }
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }finally{
+            if(resultSet != null){
+                try{
+                    resultSet.close();
+                }catch(SQLException e){
+                    e.printStackTrace();
+                }
+            }
+            if(psGetVehicles != null){
+                try{
+                    psGetVehicles.close();
+                }catch(SQLException e){
+                    e.printStackTrace();
+                }
+            }
+            if(connection != null){
+                try{
+                    connection.close();
+                }catch(SQLException e){
+                    e.printStackTrace();
+                }
+            }
+
+        }
+        return vehicleList;
+    }
+    public static void createVehicleList(List<Vehicle> vehicleList,ResultSet resultSet) throws SQLException {
+        Vehicle vehicle = new Vehicle();
+        vehicle.setVehicleId(resultSet.getInt("vehicleId"));
+        vehicle.setVehicleNo(resultSet.getString("vehicleNo"));
+        vehicle.setVehicleType(resultSet.getString("vehicleType"));
+        vehicle.setVehicleModel(resultSet.getString("vehicleModel"));
+        vehicle.setVehicleImagePath(resultSet.getString("vehicleImagePath"));
+        vehicle.setVehicleOwnerId(resultSet.getInt("vehicleOwnerId"));
+        vehicle.setBranchId(resultSet.getString("branchId"));
+        vehicleList.add(vehicle);
+    }
+
+
 }
+
 
 
 

@@ -25,7 +25,7 @@
 }
 .textfield{
     -fx-border-radius:20px;
-    -fx-text-fill:#FFD95A;
+    -fx-text-fill:#000000;
     -fx-background-color:white;
     -fx-border-color:grey;
 }
