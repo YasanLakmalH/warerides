@@ -11,7 +11,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.net.URL;
@@ -32,6 +31,8 @@ public class vehicleRegisterFormController implements Initializable{
     @FXML
     private TextField vehicleTypeText;
     @FXML
+    private TextField vehicleBrandText;
+    @FXML
     private TextField vehicleModelText;
     @FXML
     private TextField branchIdText;
@@ -46,6 +47,7 @@ public class vehicleRegisterFormController implements Initializable{
                 try {
                     if (!vehicleNoText.getText().isEmpty() &&
                             vehicleTypeText.getText().isEmpty() &&
+                            vehicleBrandText.getText().isEmpty() &&
                             vehicleModelText.getText().isEmpty() &&
                             branchIdText.getText().isEmpty() &&
                             vehicleImagePathText.getText().isEmpty() &&
@@ -53,6 +55,7 @@ public class vehicleRegisterFormController implements Initializable{
                     ) {
                         DBUtils.registerVehicle(vehicleNoText.getText(),
                                 vehicleTypeText.getText(),
+                                vehicleBrandText.getText(),
                                 vehicleModelText.getText(),
                                 branchIdText.getText(),
                                 vehicleImagePathText.getText(),

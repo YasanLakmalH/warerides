@@ -1,0 +1,9 @@
+
+`	java:S112%"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
+`	java:S112;"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
+G
+java:S1602 ",Remove useless curly braces around statement(¾ˆõ”ýÿÿÿÿ
+e
+java:S1612 "JReplace this lambda with method reference 'this::setVehicleContainerData'.(¾ˆõ”ýÿÿÿÿ
+O
+java:S1128"-Remove this unused import 'org.w3c.dom.Text'.(¶Äè‹þÿÿÿÿ8³º ÿ°1

@@ -7,3 +7,7 @@ Hsrc/main/java/com/example/warerides/controllers/DashboardController.java,8\9\8
 Nsrc/main/java/com/example/warerides/controllers/VehicleRegisterController.java,5\b\5b95e36d4d9f99a033e9c805f49847853379c216
 ‡
 Wsrc/main/java/com/example/warerides/controllers/vehicleOwnerRegisterFormController.java,5\7\57bb336deade4d9217b6dddc7370dfeb1953575d
+g
+7src/main/java/com/example/warerides/models/Inquiry.java,d\b\db2802d456f7e9000d7c6560a623c8302815c3e1
+s
+Csrc/main/java/com/example/warerides/controllers/HomeController.java,2\0\20d08f5e538ecd90ac50a938d1a328921b978db3

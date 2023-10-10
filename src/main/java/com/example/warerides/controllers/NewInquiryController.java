@@ -4,11 +4,15 @@ import com.example.warerides.DBUtils;
 import com.example.warerides.models.Vehicle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.layout.HBox;
 
 import java.io.IOException;
@@ -21,25 +25,50 @@ public class NewInquiryController implements Initializable {
     @FXML
     private ChoiceBox<String> vehicleTypeChoiceBox;
     @FXML
+    private DatePicker pickupDate;
+    @FXML
+    private DatePicker returnDate;
+    @FXML
+    private Button searchButton;
+    @FXML
     private HBox vehicleContainer;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         List<Vehicle> vehicleList = new ArrayList<>();
 
         vehicleTypeChoiceBox.getItems().addAll("CAR","SUV","CROSSOVER","VAN","MINIVAN");
-
         vehicleTypeChoiceBox.valueProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String oldValue, String newValue) {
                 vehicleList.clear();
                 DBUtils.getNoneServingVehicles(newValue).forEach(vehicle -> {
                     vehicleList.add(vehicle);
-                    addVehicles(vehicleList);
+
                 });
+                addVehicleNodes(vehicleList);
+            }
+        });
+        searchButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+
+                DBUtils.getAvailableServingVehicles(
+                        pickupDate.getValue().toString(),
+                        returnDate.getValue().toString(),
+                        vehicleTypeChoiceBox.getValue()
+                ).forEach(
+                        vehicle->{
+                            vehicleList.add(vehicle);
+
+                        }
+                );
+                System.out.println(vehicleList.size());
+                addVehicleNodes(vehicleList);
+
             }
         });
     }
-    public void addVehicles(List<Vehicle> vehicleList){
+    public void addVehicleNodes(List<Vehicle> vehicleList){
 
         if(!vehicleList.isEmpty()){
             vehicleContainer.getChildren().clear();

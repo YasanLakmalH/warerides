@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane fx:id="formContainer" prefHeight="200.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.warerides.controllers.vehicleRegisterFormController">
    <children>
       <VBox alignment="CENTER" layoutY="4.0" prefHeight="200.0" prefWidth="450.0" spacing="10.0" styleClass="form" stylesheets="@css/vehicleRegister.css">
@@ -46,18 +45,28 @@
                     </VBox>
                 </children>
             </HBox>
-            <HBox prefHeight="63.0" prefWidth="336.0" spacing="15.0">
-                <children>
-                    <VBox spacing="5.0">
-                        <children>
-                            <Label stylesheets="@css/vehicleRegister.css" text="Model">
-                                <font>
-                                    <Font name="Century Gothic" size="15.0" />
-                                </font>
-                            </Label>
-                            <TextField fx:id="vehicleModelText" styleClass="textfield" stylesheets="@css/vehicleRegister.css" />
-                        </children>
-                    </VBox>
+            <VBox spacing="5.0">
+               <children>
+                  <Label stylesheets="@css/vehicleRegister.css" text="Vehicle Brand">
+                     <font>
+                        <Font name="Century Gothic" size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="vehicleBrandText" styleClass="textfield" stylesheets="@css/vehicleRegister.css" />
+               </children>
+            </VBox>
+            <VBox spacing="5.0">
+               <children>
+                  <Label stylesheets="@css/vehicleRegister.css" text="Model">
+                     <font>
+                        <Font name="Century Gothic" size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="vehicleModelText" styleClass="textfield" stylesheets="@css/vehicleRegister.css" />
+               </children>
+            </VBox>
+            <HBox spacing="15.0">
+               <children>
                   <VBox spacing="5.0">
                      <children>
                         <Label stylesheets="@css/vehicleRegister.css" text="Branch Id">
@@ -68,18 +77,18 @@
                         <TextField fx:id="branchIdText" styleClass="textfield" stylesheets="@css/vehicleRegister.css" />
                      </children>
                   </VBox>
-                </children>
-            </HBox>
-            <VBox spacing="5.0">
-               <children>
-                  <Label stylesheets="@css/vehicleRegister.css" text="Vehicle Owner Id">
-                     <font>
-                        <Font name="Century Gothic" size="15.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="vehicleOwnerIdText" disable="true" editable="false" styleClass="textfield" stylesheets="@css/vehicleRegister.css" />
+                  <VBox spacing="5.0">
+                     <children>
+                        <Label stylesheets="@css/vehicleRegister.css" text="Vehicle Owner Id">
+                           <font>
+                              <Font name="Century Gothic" size="15.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="vehicleOwnerIdText" disable="true" editable="false" styleClass="textfield" stylesheets="@css/vehicleRegister.css" />
+                     </children>
+                  </VBox>
                </children>
-            </VBox>
+            </HBox>
             <VBox spacing="5.0">
                 <children>
                     <Label stylesheets="@css/vehicleRegister.css" text="Image Path ">
