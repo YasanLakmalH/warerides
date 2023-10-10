@@ -102,7 +102,7 @@
                                                 <Font name="Century Gothic" size="15.0" />
                                              </font>
                                           </Label>
-                                          <ChoiceBox layoutX="169.0" layoutY="8.0" prefWidth="150.0" />
+                                          <ChoiceBox fx:id="vehicleBrandChoiceBox" layoutX="169.0" layoutY="8.0" prefWidth="150.0" />
                                        </children>
                                     </AnchorPane>
                                  </children>
@@ -116,7 +116,7 @@
                                                 <Font name="Century Gothic" size="15.0" />
                                              </font>
                                           </Label>
-                                          <ChoiceBox layoutX="169.0" layoutY="8.0" prefWidth="150.0" />
+                                          <ChoiceBox fx:id="vehicleModelChoiceBox" layoutX="169.0" layoutY="8.0" prefWidth="150.0" />
                                        </children>
                                     </AnchorPane>
                                  </children>
@@ -130,7 +130,7 @@
                                                 <Font name="Century Gothic" size="15.0" />
                                              </font>
                                           </Label>
-                                          <ChoiceBox layoutX="169.0" layoutY="8.0" prefWidth="150.0" />
+                                          <ChoiceBox fx:id="serviceTypesChoiceBox" layoutX="169.0" layoutY="8.0" prefWidth="150.0" />
                                        </children>
                                     </AnchorPane>
                                  </children>
@@ -144,7 +144,7 @@
                                                 <Font name="Century Gothic" size="15.0" />
                                              </font>
                                           </Label>
-                                          <ChoiceBox layoutX="165.0" layoutY="8.0" prefWidth="150.0" />
+                                          <ChoiceBox fx:id="pickupLocationChoiceBox" layoutX="165.0" layoutY="8.0" prefWidth="150.0" />
                                        </children>
                                     </AnchorPane>
                                  </children>

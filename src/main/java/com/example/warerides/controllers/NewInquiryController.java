@@ -4,6 +4,8 @@ import com.example.warerides.DBUtils;
 import com.example.warerides.models.Vehicle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -17,9 +19,8 @@ import javafx.scene.layout.HBox;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.sql.SQLException;
+import java.util.*;
 
 public class NewInquiryController implements Initializable {
     @FXML
@@ -32,11 +33,19 @@ public class NewInquiryController implements Initializable {
     private Button searchButton;
     @FXML
     private HBox vehicleContainer;
+    @FXML
+    private ChoiceBox<String> vehicleBrandChoiceBox;
+    @FXML
+    private ChoiceBox<String> vehicleModelChoiceBox;
+    @FXML
+    private ChoiceBox<String> serviceTypesChoiceBox;
+    @FXML
+    private ChoiceBox<String> pickupLocationChoiceBox;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        addChoices(vehicleTypeChoiceBox,vehicleBrandChoiceBox, vehicleModelChoiceBox,serviceTypesChoiceBox,pickupLocationChoiceBox);
         List<Vehicle> vehicleList = new ArrayList<>();
 
-        vehicleTypeChoiceBox.getItems().addAll("CAR","SUV","CROSSOVER","VAN","MINIVAN");
         vehicleTypeChoiceBox.valueProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String oldValue, String newValue) {
@@ -48,6 +57,7 @@ public class NewInquiryController implements Initializable {
                 addVehicleNodes(vehicleList);
             }
         });
+
         searchButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -67,6 +77,46 @@ public class NewInquiryController implements Initializable {
 
             }
         });
+    }
+    public void addChoices(ChoiceBox vehicleTypes,
+                           ChoiceBox vehicleBrands,
+                           ChoiceBox vehicleModels,
+                           ChoiceBox serviceTypes,
+                           ChoiceBox pickupLocaions
+    ){
+        try {
+            Set<String> uniqueTypes = new HashSet<>();
+            Set<String> uniqueBrands = new HashSet<>();
+            Set<String> uniqueModels = new HashSet<>();
+
+            DBUtils.getVehicleData().forEach(
+                    vehicle -> {
+                        uniqueTypes.add(vehicle.getvehicleType());
+                        uniqueBrands.add(vehicle.getVehicleBrand());
+                        uniqueModels.add(vehicle.getVehicleModel());
+                    }
+            );
+            DBUtils.getServiceTypes().forEach(
+                    service -> {
+                        serviceTypes.getItems().add(service.getServiceType());
+                    }
+            );
+            DBUtils.getPickupLocations().forEach(
+                    location ->{
+                        pickupLocaions.getItems().add(location);
+                    }
+            );
+            ObservableList<String> uniqueTypesList = FXCollections.observableArrayList(uniqueTypes);
+            ObservableList<String> uniqueBrandsList = FXCollections.observableArrayList(uniqueBrands);
+            ObservableList<String> uniqueModelsList = FXCollections.observableArrayList(uniqueModels);
+
+            vehicleTypes.setItems(uniqueTypesList);
+            vehicleBrands.setItems(uniqueBrandsList);
+            vehicleModels.setItems(uniqueModelsList);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
     public void addVehicleNodes(List<Vehicle> vehicleList){
 

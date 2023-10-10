@@ -2,6 +2,7 @@ package com.example.warerides;
 
 import com.example.warerides.controllers.DashboardController;
 import com.example.warerides.controllers.VehicleItemController;
+import com.example.warerides.models.Service;
 import com.example.warerides.models.Vehicle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +13,7 @@ import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.Serial;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -329,6 +331,83 @@ public class DBUtils {
         }
         return vehicleList;
     }
+    public static List<Service> getServiceTypes(){
+        List<Service> services = new ArrayList<>();
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+        try{
+            connection = DBConnection();
+            String query = "SELECT * FROM services;";
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                services.add(
+                        new Service(
+                                resultSet.getInt("serviceId"),
+                                resultSet.getString("serviceType")
+                        )
+                );
+            }
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }finally {
+            try{
+                resultSet.close();
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+            try{
+                statement.close();
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+            try{
+                connection.close();
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+        }
+        return services;
+    }
+
+    public static List<String> getPickupLocations(){
+        List<String> locations = new ArrayList<>();
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+        try{
+            connection = DBConnection();
+            String query = "SELECT * FROM branches;";
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                locations.add(resultSet.getString("branchName"));
+            }
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }finally {
+            try{
+                resultSet.close();
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+            try{
+                statement.close();
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+            try{
+                connection.close();
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+        }
+        return locations;
+    }
+
     public static void createVehicleList(List<Vehicle> vehicleList,ResultSet resultSet) throws SQLException {
         while(resultSet.next()){
             Vehicle vehicle = new Vehicle();
@@ -344,7 +423,6 @@ public class DBUtils {
         }
 
     }
-
 
 }
 

@@ -2,17 +2,17 @@ package com.example.warerides.models;
 
 public class Inquiry {
     private int inquiryId;
-    private String serviceType;
+    private int serviceId;
     private String pickupLocation;
     private String pickupDate;
     private String pickupTime;
     private String returnDate;
     private String vehicleType;
 
-    public Inquiry(int inquiryId, String serviceType, String pickupLocation,
+    public Inquiry(int inquiryId, int serviceId, String pickupLocation,
                    String pickupDate, String pickupTime, String returnDate, String vehicleType) {
         this.inquiryId = inquiryId;
-        this.serviceType = serviceType;
+        this.serviceId = serviceId;
         this.pickupLocation = pickupLocation;
         this.pickupDate = pickupDate;
         this.pickupTime = pickupTime;
@@ -28,12 +28,12 @@ public class Inquiry {
         this.inquiryId = inquiryId;
     }
 
-    public String getServiceType() {
-        return serviceType;
+    public int getServiceType() {
+        return serviceId;
     }
 
-    public void setServiceType(String serviceType) {
-        this.serviceType = serviceType;
+    public void setServiceType(int serviceId) {
+        this.serviceId = serviceId;
     }
 
     public String getPickupLocation() {

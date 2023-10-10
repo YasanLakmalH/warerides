@@ -1,0 +1,8 @@
+
+g	java:S112F"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ôôÆ¿±1
+g	java:S112Z"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8õôÆ¿±1
+E
+java:S1604,"(Make this anonymous inner class a lambda(ü¥²†8öôÆ¿±1
+J
+java:S1604K"(Make this anonymous inner class a lambda(¸Üš¨ûÿÿÿÿ8öôÆ¿±1
+n	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(¬¿ØÀşÿÿÿÿ8öôÆ¿±1
