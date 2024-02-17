@@ -1,7 +1,6 @@
 package com.example.warerides;
 
 import com.example.warerides.controllers.DashboardController;
-import com.example.warerides.controllers.VehicleItemController;
 import com.example.warerides.models.Service;
 import com.example.warerides.models.Vehicle;
 import javafx.event.ActionEvent;
@@ -13,13 +12,11 @@ import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.io.Serial;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 import static javafx.fxml.FXMLLoader.load;
-import static javafx.fxml.FXMLLoader.loadType;
 
 public class DBUtils {
     public static Connection DBConnection() throws SQLException {
@@ -68,14 +65,13 @@ public class DBUtils {
         if (!resultSet.isBeforeFirst()) {
             System.out.println("User not found in the database!");
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Account does not exist");
+            alert.setContentText("User does not exist");
             alert.show();
         } else {
             while (resultSet.next()) {
                 receivedPassword = resultSet.getString("userPassword");
                 userId = resultSet.getInt("userId");
                 branchId = resultSet.getString("branchId");
-                System.out.println("userID:" + userId);
             }
         }
         if (receivedPassword.equals(userPassword)) {
@@ -293,15 +289,12 @@ public class DBUtils {
             psGetVehicles = connection.prepareStatement(
                     "SELECT * FROM vehicles INNER JOIN inquiries ON vehicles.vehicleNo = inquiries.vehicleNo WHERE (inquiries.pickupDate > ? or inquiries.returnDate < ?) and vehicles.vehicleType=?;"
             );
-
             psGetVehicles.setString(1,returnDate);
             psGetVehicles.setString(2,pickupDate);
             psGetVehicles.setString(3,vehicleType);
             resultSet = psGetVehicles.executeQuery();
 
             createVehicleList(vehicleList,resultSet);
-
-
 
         }catch(SQLException e){
             e.printStackTrace();
@@ -423,7 +416,76 @@ public class DBUtils {
         }
 
     }
+    public static void submitQuery( int serviceId, String pickupLocation, String pickupDate, String returnDate, String vehicleType, String vehicleNo) throws SQLException {
+        Connection connection = null;
+        PreparedStatement psInsertnewInquiry = null;
+        int inquiryId = newInquiryIdGenerator();
+        try{
+            connection = DBConnection();
+            psInsertnewInquiry = connection.prepareStatement("INSERT INTO inquiries VALUES(?,?,?,?,?,?,?)");
+            psInsertnewInquiry.setInt(1,inquiryId);
+            psInsertnewInquiry.setInt(2,serviceId);
+            psInsertnewInquiry.setString(3,pickupLocation);
+            psInsertnewInquiry.setString(4,pickupDate);
+            psInsertnewInquiry.setString(5,returnDate);
+            psInsertnewInquiry.setString(6,vehicleType);
+            psInsertnewInquiry.setString(7,vehicleNo);
 
+            psInsertnewInquiry.executeUpdate();
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setContentText("Successful");
+            alert.show();
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }finally{
+            psInsertnewInquiry.close();
+            connection.close();
+        }
+
+    }
+    public static int newInquiryIdGenerator(){
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+        int newInquiryId = 0;
+        String query = "SELECT COUNT(inquiryId) AS inquiryCount FROM inquiries;";
+        try{
+            connection = DBConnection();
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(query);
+            while(resultSet.next()){
+                newInquiryId = resultSet.getInt("inquiryCount")+1;
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }finally{
+            if(resultSet != null){
+                try{
+                    resultSet.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            }
+            if(resultSet != null){
+                try{
+                    statement.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            }
+            if(connection != null){
+                try{
+                    connection.close();
+                }catch(SQLException e){
+                    e.printStackTrace();
+                }
+
+            }
+        }
+        return newInquiryId;
+    }
 }
 
 

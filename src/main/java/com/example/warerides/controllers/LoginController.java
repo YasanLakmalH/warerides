@@ -30,7 +30,7 @@ public class LoginController implements Initializable {
             public void handle(ActionEvent event) {
                 if(!userNameText.getText().trim().isEmpty() && !passwordText.getText().trim().isEmpty()){
                     try {
-                        DBUtils.logInVerify(event, "Dashboard.fxml", userNameText.getText(), passwordText.getText());
+                        DBUtils.logInVerify(event, "Dashboard.fxml", userNameText.getText().toLowerCase(), passwordText.getText());
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }

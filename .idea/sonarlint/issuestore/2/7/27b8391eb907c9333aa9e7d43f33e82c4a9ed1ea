@@ -1,0 +1,33 @@
+
+g	java:S112#"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8¶Ä»ŸÙ1
+g	java:S112*"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8¶Ä»ŸÙ1
+n
+java:S1192À"KDefine a constant instead of duplicating this literal "Successful" 3 times.( Ÿ´öıÿÿÿÿ8¸Ä»ŸÙ1
+s	java:S117±"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ãÓÊèùÿÿÿÿ8¸Ä»ŸÙ1
+k
+java:S2259M"NA "NullPointerException" could be thrown; "receivedPassword" is nullable here.(ğ­Úõ8óÅ»ŸÙ1
+e
+java:S2259Ş"GA "NullPointerException" could be thrown; "resultSet" is nullable here.(èå²×8óÅ»ŸÙ1
+p
+java:S2259Æ"RA "NullPointerException" could be thrown; "psInsertVehicleOwner" is nullable here.(úş–…8óÅ»ŸÙ1
+s
+java:S2259»"PA "NullPointerException" could be thrown; "psInsertnewInquiry" is nullable here.(ïÈ…ïúÿÿÿÿ8’‹ÑŸÙ1
+e
+java:S2259‚"GA "NullPointerException" could be thrown; "resultSet" is nullable here.(èå²×8ôÅ»ŸÙ1
+j
+java:S2095È"GUse try-with-resources or close this "Statement" in a "finally" clause.(‡²€·ıÿÿÿÿ8ôÅ»ŸÙ1
+i
+java:S2095n"GUse try-with-resources or close this "Statement" in a "finally" clause.(‡²€·ıÿÿÿÿ8ôÅ»ŸÙ1
+l
+java:S2095="OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ĞÖ½­8ôÅ»ŸÙ1
+i
+java:S2095_"GUse try-with-resources or close this "Statement" in a "finally" clause.(é°Áµşÿÿÿÿ8ôÅ»ŸÙ1
+i
+java:S2095~"GUse try-with-resources or close this "Statement" in a "finally" clause.(é°Áµşÿÿÿÿ8ôÅ»ŸÙ1
+j
+java:S2095"GUse try-with-resources or close this "Statement" in a "finally" clause.(‡²€·ıÿÿÿÿ8ôÅ»ŸÙ1
+\
+java:S1118":Add a private constructor to hide the implicit public one.(İµï„üÿÿÿÿ8öÅ»ŸÙ1
+o	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(È¸´Øúÿÿÿÿ8öÅ»ŸÙ1
+o	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Æı·¿ıÿÿÿÿ8÷Å»ŸÙ1
+X	java:S1251"<This block of commented-out lines of code should be removed.(«‡İ¹8‹Æ»ŸÙ1

@@ -1,6 +1,7 @@
 package com.example.warerides.controllers;
 
 import com.example.warerides.DBUtils;
+import com.example.warerides.models.Service;
 import com.example.warerides.models.Vehicle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -21,8 +22,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class NewInquiryController implements Initializable {
+    List<Vehicle> vehicleList = new ArrayList<>();
+
     @FXML
     private ChoiceBox<String> vehicleTypeChoiceBox;
     @FXML
@@ -30,7 +34,7 @@ public class NewInquiryController implements Initializable {
     @FXML
     private DatePicker returnDate;
     @FXML
-    private Button searchButton;
+    private Button searchButton,submitButton;
     @FXML
     private HBox vehicleContainer;
     @FXML
@@ -43,25 +47,28 @@ public class NewInquiryController implements Initializable {
     private ChoiceBox<String> pickupLocationChoiceBox;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        addChoices(vehicleTypeChoiceBox,vehicleBrandChoiceBox, vehicleModelChoiceBox,serviceTypesChoiceBox,pickupLocationChoiceBox);
-        List<Vehicle> vehicleList = new ArrayList<>();
-
+        defaultChoices(vehicleTypeChoiceBox,serviceTypesChoiceBox,pickupLocationChoiceBox);
         vehicleTypeChoiceBox.valueProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String oldValue, String newValue) {
                 vehicleList.clear();
                 DBUtils.getNoneServingVehicles(newValue).forEach(vehicle -> {
                     vehicleList.add(vehicle);
-
                 });
                 addVehicleNodes(vehicleList);
+            }
+        });
+        vehicleBrandChoiceBox.valueProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String oldValue, String newValue) {
+                vehiclesFilterByBrand(vehicleList,newValue);
+                getModelChoices(vehicleModelChoiceBox,newValue);
             }
         });
 
         searchButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-
                 DBUtils.getAvailableServingVehicles(
                         pickupDate.getValue().toString(),
                         returnDate.getValue().toString(),
@@ -69,31 +76,58 @@ public class NewInquiryController implements Initializable {
                 ).forEach(
                         vehicle->{
                             vehicleList.add(vehicle);
-
                         }
                 );
-                System.out.println(vehicleList.size());
                 addVehicleNodes(vehicleList);
+                getBrandChoices(vehicleBrandChoiceBox,vehicleTypeChoiceBox.getValue());
 
             }
         });
+        s
     }
-    public void addChoices(ChoiceBox vehicleTypes,
-                           ChoiceBox vehicleBrands,
-                           ChoiceBox vehicleModels,
-                           ChoiceBox serviceTypes,
-                           ChoiceBox pickupLocaions
-    ){
+    public void getBrandChoices(ChoiceBox<String> choiceBox,String type){
+        Set<String> uniqueChoices = new HashSet<>();
+        vehicleList.forEach(vehicle -> {
+            if(type.equals(vehicle.getvehicleType())){
+                uniqueChoices.add(vehicle.getVehicleBrand());
+            }
+        });
+        ObservableList<String> uniqueChoicesList = FXCollections.observableArrayList(uniqueChoices);
+        choiceBox.setItems(uniqueChoicesList);
+    }
+    public void getModelChoices(ChoiceBox<String> choiceBox,String brand){
+        Set<String> uniqueChoices = new HashSet<>();
+        vehicleList.forEach(vehicle -> {
+            if(brand.equals(vehicle.getVehicleBrand())){
+                uniqueChoices.add(vehicle.getVehicleModel());
+            }
+        });
+        ObservableList<String> uniqueChoicesList = FXCollections.observableArrayList(uniqueChoices);
+        choiceBox.setItems(uniqueChoicesList);
+    }
+    public void vehiclesFilterByBrand(List<Vehicle> vehicleList, String brandName){
+//  reset vehicle list.
+        List<Vehicle> filteredVehicles = new ArrayList<>();
+        vehicleList.forEach(
+                vehicle -> {
+                    if(vehicle.getVehicleBrand().equals(brandName)){
+                        filteredVehicles.add(vehicle);
+                    }
+                }
+        );
+        vehicleList.addAll(filteredVehicles);
+
+//  add vehicle nodes.
+        addVehicleNodes(filteredVehicles);
+    }
+    public void defaultChoices(ChoiceBox<String> vehicleTypes,
+                           ChoiceBox<String> serviceTypes,
+                           ChoiceBox<String> pickupLocaions){
         try {
             Set<String> uniqueTypes = new HashSet<>();
-            Set<String> uniqueBrands = new HashSet<>();
-            Set<String> uniqueModels = new HashSet<>();
-
             DBUtils.getVehicleData().forEach(
                     vehicle -> {
                         uniqueTypes.add(vehicle.getvehicleType());
-                        uniqueBrands.add(vehicle.getVehicleBrand());
-                        uniqueModels.add(vehicle.getVehicleModel());
                     }
             );
             DBUtils.getServiceTypes().forEach(
@@ -107,12 +141,7 @@ public class NewInquiryController implements Initializable {
                     }
             );
             ObservableList<String> uniqueTypesList = FXCollections.observableArrayList(uniqueTypes);
-            ObservableList<String> uniqueBrandsList = FXCollections.observableArrayList(uniqueBrands);
-            ObservableList<String> uniqueModelsList = FXCollections.observableArrayList(uniqueModels);
-
             vehicleTypes.setItems(uniqueTypesList);
-            vehicleBrands.setItems(uniqueBrandsList);
-            vehicleModels.setItems(uniqueModelsList);
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -122,16 +151,17 @@ public class NewInquiryController implements Initializable {
 
         if(!vehicleList.isEmpty()){
             vehicleContainer.getChildren().clear();
-            vehicleList.forEach(vehicle -> {
-                try {
-                    Node node = setVehicleData(vehicle.getVehicleImagePath(),vehicle.getVehicleModel());
-                    vehicleContainer.getChildren().add(node);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            });
-
         }
+        vehicleList.forEach(vehicle -> {
+            try {
+                Node node = setVehicleData(vehicle.getVehicleImagePath(),vehicle.getVehicleModel());
+                vehicleContainer.getChildren().add(node);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+
     }
     public Node setVehicleData(String imagePath, String modelName) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/warerides/VehicleItem.fxml"));
@@ -139,5 +169,17 @@ public class NewInquiryController implements Initializable {
         VehicleItemController vehicleItemController = loader.getController();
         vehicleItemController.setData(imagePath, modelName);
         return node;
+    }
+    public void submit(String serviceType, String pickupLocation, String pickupDate, String returnDate, String vehicleType, String vehicleNo){
+        DBUtils.submitQuery(getServiceType(serviceType),pickupLocation,pickupDate,returnDate,vehicleType,vehicleNo);
+    }
+    public int getServiceType(String serviceType){
+        List<Service> services = DBUtils.getServiceTypes();
+        for(Service service:services){
+            if(service.getServiceType().equals(serviceType)){
+                return service.getServiceId();
+            }
+        }
+        return 0;
     }
 }
