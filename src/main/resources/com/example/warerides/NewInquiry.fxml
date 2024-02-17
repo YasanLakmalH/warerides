@@ -149,20 +149,6 @@
                                     </AnchorPane>
                                  </children>
                               </HBox>
-                              <HBox alignment="CENTER" maxHeight="40.0" prefHeight="40.0" prefWidth="400.0" spacing="10.0" styleClass="header" stylesheets="@css/newInquiry.css">
-                                 <children>
-                                    <AnchorPane>
-                                       <children>
-                                          <Label layoutX="-3.0" layoutY="11.0" text="Pickup Time" textAlignment="CENTER" textFill="WHITE">
-                                             <font>
-                                                <Font name="Century Gothic" size="15.0" />
-                                             </font>
-                                          </Label>
-                                          <ChoiceBox layoutX="163.0" layoutY="8.0" prefWidth="150.0" />
-                                       </children>
-                                    </AnchorPane>
-                                 </children>
-                              </HBox>
                            </children>
                         </VBox>
                         <Button mnemonicParsing="false" stylesheets="@css/newInquiry.css" text="Submit" />
